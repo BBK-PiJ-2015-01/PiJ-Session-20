@@ -7,6 +7,7 @@ import java.util.function.Function;
 import java.util.function.Predicate;
 import java.util.stream.Collectors;
 import java.util.stream.DoubleStream;
+import java.util.stream.IntStream;
 
 public class Exercises {
 
@@ -22,6 +23,7 @@ public class Exercises {
 		new Exercises().exercise8Launcher();
 		new Exercises().exercise9Launcher();
 		new Exercises().exercise10Launcher();
+		new Exercises().exercise11Launcher();
 	}
 
 	private void exercise1Launcher() {
@@ -94,6 +96,12 @@ public class Exercises {
 		Exercises.randomDoubleList(12).stream().forEach(d -> System.out.println(d));
 	}
 	
+	private void exercise11Launcher() {
+
+		System.out.println("Stepped list");
+		Exercises.orderedNumberList(50,5,12).stream().forEach(d -> System.out.println(d));
+	}
+	
 	private static List<Double> randomDoubleList(int n) {
 		
 		Random r = new Random();
@@ -104,7 +112,17 @@ public class Exercises {
 		}
 		return builder.build().boxed().collect(Collectors.toList());	
 	}
+	
+	private static List<Integer> orderedNumberList(int start, int step, int size) {
+		
+		IntStream.Builder builder = IntStream.builder();
 
+		for(int i = 0; i < size; i++) {
+			builder.add(start + i * step);
+		}
+		return builder.build().boxed().collect(Collectors.toList());	
+	}
+	
 	private List<String> mapFunctions(Collection<String> theseWords, Function<String, String> mapFunction) {
 
 		return theseWords.stream().map(mapFunction).collect(Collectors.toList());
