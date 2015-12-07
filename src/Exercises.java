@@ -18,6 +18,7 @@ public class Exercises {
 		new Exercises().exercise5Launcher();
 		new Exercises().exercise7Launcher();
 		new Exercises().exercise8Launcher();
+		new Exercises().exercise9Launcher();
 	}
 
 	private void exercise1Launcher() {
@@ -73,6 +74,14 @@ public class Exercises {
 
 		System.out.println("Concatenation via map reduce");
 		Optional<String> o = words.stream().map(s -> s.toUpperCase()).reduce((s1, s2) -> s1 + s2);
+		System.out.println(o.isPresent() ? o.get() : "Something went wrong");
+
+	}
+	
+	private void exercise9Launcher() {
+
+		System.out.println("Concatenation using comma via reduce only");
+		Optional<String> o = words.stream().reduce((s1, s2) -> s1 + "," + s2);
 		System.out.println(o.isPresent() ? o.get() : "Something went wrong");
 
 	}
