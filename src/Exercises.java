@@ -2,9 +2,11 @@ import java.util.Arrays;
 import java.util.Collection;
 import java.util.List;
 import java.util.Optional;
+import java.util.Random;
 import java.util.function.Function;
 import java.util.function.Predicate;
 import java.util.stream.Collectors;
+import java.util.stream.DoubleStream;
 
 public class Exercises {
 
@@ -19,6 +21,7 @@ public class Exercises {
 		new Exercises().exercise7Launcher();
 		new Exercises().exercise8Launcher();
 		new Exercises().exercise9Launcher();
+		new Exercises().exercise10Launcher();
 	}
 
 	private void exercise1Launcher() {
@@ -83,7 +86,23 @@ public class Exercises {
 		System.out.println("Concatenation using comma via reduce only");
 		Optional<String> o = words.stream().reduce((s1, s2) -> s1 + "," + s2);
 		System.out.println(o.isPresent() ? o.get() : "Something went wrong");
+	}
+	
+	private void exercise10Launcher() {
 
+		System.out.println("Random list of Doubles");
+		Exercises.randomDoubleList(12).stream().forEach(d -> System.out.println(d));
+	}
+	
+	private static List<Double> randomDoubleList(int n) {
+		
+		Random r = new Random();
+		DoubleStream.Builder builder = DoubleStream.builder();
+
+		for(int i = 0; i < n; i++) {
+			builder.add(r.nextDouble());
+		}
+		return builder.build().boxed().collect(Collectors.toList());	
 	}
 
 	private List<String> mapFunctions(Collection<String> theseWords, Function<String, String> mapFunction) {
