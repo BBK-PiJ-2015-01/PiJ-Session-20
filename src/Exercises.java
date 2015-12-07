@@ -24,6 +24,7 @@ public class Exercises {
 		new Exercises().exercise9Launcher();
 		new Exercises().exercise10Launcher();
 		new Exercises().exercise11Launcher();
+		new Exercises().exercise12Launcher();
 	}
 
 	private void exercise1Launcher() {
@@ -101,6 +102,16 @@ public class Exercises {
 		System.out.println("Stepped list");
 		Exercises.orderedNumberList(50,5,12).stream().forEach(d -> System.out.println(d));
 	}
+	
+	private void exercise12Launcher() {
+
+		System.out.println("Sum of integers in parallel");
+		Optional<Integer> o  = Exercises.orderedNumberList(50,5,12000).stream().reduce( (i1, i2) -> i1 + i2);
+		System.out.println(o.isPresent() ? o.get() : "Something went wrong");
+		o  = Exercises.orderedNumberList(50,5,12000).stream().parallel().reduce( (i1, i2) -> i1 + i2);
+		System.out.println(o.isPresent() ? o.get() : "Something went wrong");
+	}
+	
 	
 	private static List<Double> randomDoubleList(int n) {
 		
