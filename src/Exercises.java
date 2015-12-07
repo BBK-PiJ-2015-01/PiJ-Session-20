@@ -6,17 +6,18 @@ import java.util.function.Function;
 import java.util.function.Predicate;
 import java.util.stream.Collectors;
 
-public class Exercise1 {
+public class Exercises {
 
 	
 	private final List<String> words = Arrays.asList("hi", "hello", "How", "are", "you");
 	
 	public static void main(String[] args) {
 		
-		new Exercise1().exercise1Launcher();
-		new Exercise1().exercise3Launcher();
-		new Exercise1().exercise4Launcher();
-		new Exercise1().exercise5Launcher();
+		new Exercises().exercise1Launcher();
+		new Exercises().exercise3Launcher();
+		new Exercises().exercise4Launcher();
+		new Exercises().exercise5Launcher();
+		new Exercises().exercise7Launcher();
 	}
 	
 	private void exercise1Launcher() {
@@ -56,9 +57,15 @@ public class Exercise1 {
 		System.out.println("Special selection");
 		Optional<String> o = words.stream().map(s -> s.toUpperCase()).filter(s -> s.length() < 4).filter(s -> s.contains("E")).findFirst();
 		System.out.println(o.isPresent() ? o.get() : "Not found");
-
 	}
 	
+	private void exercise7Launcher() {
+		
+		System.out.println("Concatenation via reduce");
+		Optional<String> o = words.stream().map(s -> s.toUpperCase()).reduce((s1,s2) -> s1 + s2);
+		System.out.println(o.isPresent() ? o.get() : "Something went wrong");
+
+	}
 	
 	private List<String> mapFunctions (Collection<String> theseWords, Function<String, String> mapFunction) {
 		
